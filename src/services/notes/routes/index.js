@@ -1,7 +1,7 @@
 import express from 'express';
 import {
   createNote,
-  getAllNotes,
+  getNotes,
   getNoteById,
   editNoteById,
   deleteNoteById,
@@ -13,7 +13,7 @@ import { noteQuerySchema } from '../../../services/notes/validator/schema.js';
 const router = express.Router();
 
 router.post('/notes', validate(notePayloadSchema), createNote);
-router.get('/notes', validate(noteQuerySchema), getAllNotes);
+router.get('/notes', validate(noteQuerySchema), getNotes);
 router.get('/notes/:id', getNoteById);
 router.put('/notes/:id', validate(notePayloadSchema), editNoteById);
 router.delete('/notes/:id', deleteNoteById);

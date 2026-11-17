@@ -3,6 +3,11 @@ import { ClientError } from '../exceptions/index.js';
 
 // eslint-disable-next-line no-unused-vars
 const ErrorHandler = (err, req, res, next) => {
+  // Handle malformed JSON body error dari express.json()
+  if (err.type === 'entity.parse.failed' || (err instanceof SyntaxError && err.status === 400)) {
+    return response(res, 400, 'Invalid JSON payload', null);
+  }
+
   // Handle ClientError and its subclasses (InvariantError, NotFoundError)
   if (err instanceof ClientError) {
     return response(res, err.statusCode, err.message, null);

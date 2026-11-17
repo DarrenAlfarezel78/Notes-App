@@ -7,6 +7,7 @@ const validate = (schema) => (req, res, next) => {
 
   if (error) return next(error);
   req.body = value;
+  req.validated = value;
   return next();
 };
 

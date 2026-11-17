@@ -1,10 +1,10 @@
 import AuthenticationRepositories from '../repositories/authentication-repositories.js';
 import UserRepositories from '../../users/repositories/user-repositories.js';
-import TokenManager from '../../../tokenize/token-manager.js';
+import TokenManager from '../../../security/token-manager.js';
 import response from '../../../utils/response.js';
 import InvariantError from '../../../exceptions/invariant-error.js';
 
-export const login = async (req, res, next) => {
+export const login = async (req, res) => {
   const { username, password } = req.body;
   const id = await UserRepositories.verifyUserCredential(username, password);
 
